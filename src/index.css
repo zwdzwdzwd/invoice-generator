@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .invoice-a4 {
+    width: 210mm;
+    /* 改为 height 并在打印时严格控制，避免溢出导致第二页 */
+    height: 296mm; 
+    background: white;
+    margin: 0 auto;
+    padding: 20mm;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-sizing: border-box; /* 确保 padding 包含在高度内 */
+    overflow: hidden; /* 强制裁剪溢出内容 */
+  }
+  @media print {
+    .invoice-a4 {
+      width: 100%;
+      height: 100%;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      background: white;
+    }
+    .no-print {
+      display: none;
+    }
+  }
+}
